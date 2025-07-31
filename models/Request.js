@@ -11,6 +11,16 @@ const requestSchema = new mongoose.Schema({
   region: String,
   requestedTime: String,
   requestedDate: String,
+  status: {
+    type: String,
+    enum: ["new", "accepted", "denied"],
+    default: "new"
+  },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now,

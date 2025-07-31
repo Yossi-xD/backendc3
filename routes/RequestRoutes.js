@@ -8,7 +8,7 @@ const {
 } = require("../controllers/requestController");
 
 router.post("/", protect, createRequest);
-router.get("/", getAllRequests);
-router.delete("/:id", deleteRequest); // ✅ this is new
+router.get("/", protect, getAllRequests);  // ✅ protected route
+router.delete("/:id", protect, deleteRequest);  // ✅ secured with protect
 
 module.exports = router;
