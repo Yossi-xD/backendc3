@@ -14,7 +14,8 @@ exports.showDBName = async (req, res) => {
 
 // REGISTER USER
 exports.registerUser = async (req, res) => {
-  const { email, password, role } = req.body;
+  const { name, email, password, role } = req.body;
+
 
   try {
     const existing = await User.findOne({ email: email.toLowerCase() });
@@ -27,6 +28,7 @@ exports.registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = new User({
+      name,
       email: email.toLowerCase(),
       password: hashedPassword,
       role
